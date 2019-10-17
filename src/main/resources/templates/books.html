@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+	crossorigin="anonymous">
+<title>Books</title>
+
+</head>
+<body>
+	<div class="container">
+		<h2 class="page-header">Book List</h2>
+		<p class="text-right"><a href="./addBook.html" th:href="@{/books/addbook}" class="btn btn-default">New</a></p>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>Name</th>
+					<th>Author</th>
+					<th>Description</th>
+					<th>Status</th>
+					<th>Operation</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="book,iterStat:${books}" th:class="${iterStat.even}? bg-success">
+					<td th:text="${iterStat.count}">1</td>
+					<td>
+						<a href="#" th:text="${book.name}" th:href="@{'/books/' + ${book.id}}">name</a>
+					</td>
+					<td th:text="${book.author}">author</td>
+					<td th:text="${book.description}">description</td>
+					<td th:switch="${book.status}">
+						<span th:case="0">To read</span>
+						<span th:case="1">Reading</span>
+						<span th:case="2">Done</span>
+					</td> 
+						
+					<td>
+						<a href="#" th:href="@{/books/addbook/{id}(id=${book.id})}">Edit</a>&nbsp;
+						<form th:action="@{/books/delete/{id}(id=${book.id})}" th:method="delete">
+						<!-- <a href="#" th:href="@{/books/delete/{id}(id=${book.id})}">Delete</a>
+						 -->
+						 <input type="submit" value="delete"/>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+		integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+		crossorigin="anonymous"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script th:src="@{/js/bootstrap.min.js}"
+		src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+		integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+		crossorigin="anonymous"></script>
+</body>
+
+
+
+</html>

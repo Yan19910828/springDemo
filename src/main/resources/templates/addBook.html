@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+	crossorigin="anonymous">
+<title>Editing</title>
+</head>
+<body>
+	<div class="container" style="max-width: 700px; margin-top:50px;">
+		<h2 class="page-header">Editing</h2>
+		<div class="well">
+			<form action="#" th:action="@{/books}" th:object="${book}" method="post">
+			<input type="hidden" th:value="*{id}" name="id">
+				<div class="form-group">
+					<label for="nameId">name</label>
+					<input type="text" name="name" id="nameId" class="form-control" th:field="*{name}">
+				</div>
+				<div class="form-group">
+					<label for="authorId">author</label> 
+					<input type="text" name="author" id="authorId" class="form-control" th:field="*{author}">
+				</div>
+				<div class="form-group">
+					<label for="descriptionId">Description</label> 
+					<input type="text" name="description" id="descriptionId" class="form-control" th:field="*{description}">
+				</div>
+				<div class="form-group">
+					<label for="statusId">status</label> 
+					<select name="status" id="statusId" class="form-control">
+						<option value="0" th:selected="*{status}=='0'">To read</option>
+						<option value="0" th:selected="*{status}=='1'">Reading</option>
+						<option value="0" th:selected="*{status}=='2'">Done</option>
+					</select>
+				</div>
+				<p class="text-center">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</p>
+			</form>
+		</div>
+	</div>
+
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+		integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+		crossorigin="anonymous"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script th:src="@{/js/bootstrap.min.js}"
+		src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+		integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+		crossorigin="anonymous"></script>
+</body>
+</html>
